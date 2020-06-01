@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content">
+                    <form #studentFrom="ngForm" (ngSubmit)="addStudent(studentFrom)">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <br>
+                                <input type="hidden" name="_id" #_id="ngModel"
+                                    [(ngModel)]="StudentService.selectedStudent.nombres">
+                                <input type="text" id="nombre" placeholder="Nombre" required #nombres="ngModel"
+                                    name="nombres" [(ngModel)]="StudentServiceService.selectedStudent.nombres">
+                                <input type="text" id="nombre" placeholder="Apellidos" required #apellidos="ngModel"
+                                    name="nombres" [(ngModel)]="StudentServiceService.selectedStudent.apellidos">
+                                <input type="number" id="edad" placeholder="Edad" required #edad="ngModel" name="edad"
+                                    [(ngModel)]="StudentServiceService.selectedStudent.edad">
+                                <input type="email" id="correo" placeholder="Correo" required #correo="ngModel"
+                                    name="correo" [(ngModel)]="StudentServiceService.selectedStudent.correo">
+                                <input type="text" id="direccion" placeholder="Direccion" required #direccion="ngModel"
+                                    name="direccion" [(ngModel)]="StudentServiceService.selectedStudent.correo">
+                                <input type="number" id="telefono" placeholder="Telefono" required #telefono="ngModel"
+                                    name="telefono" [(ngModel)]="StudentServiceService.selectedStudent.correo">
+                            </div>
+                            <div class="card-action">
+                                <div class="card-action">
+                                    <div class="input-field col s12">
+                                        <button class="btn right" (click)="resetForm(studentFrom)">Clean</button>
+                                        <button class="btn right" style="margin-right: 2px">save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="cols7">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Edad</th>
+                        <th>Correo</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of StudentServiceService.students">
+                        <td>{{student.nombres}}</td>
+                        <td>{{student.apellidos}}</td>
+                        <td>{{student.edad}}</td>
+                        <td>{{student.correo}}</td>
+                        <td>{{student.direccion}}</td>
+                        <td>{{student.telefono}}</td>
+                        <td (click)="editStudent(student)"> <i class="material-icons">editar</i></td>
+                        <td (click)="deleteStudent(student._id)"> <i class="material-icons">borrar</i></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
